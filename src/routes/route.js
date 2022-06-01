@@ -6,9 +6,7 @@ const externalModule2 = require('../validator/formatter.js')
 const router = express.Router();
 
 router.get('/test-me', function (req, res) {
-    //console.log('The constant in logger route has a value '+externalModule.endpoint)
-    //console.log('The current batch is '+externalModule.batch)
-    //console.log('welcome' +externalModule.welcome)
+    
     externalModule.problem1()
     externalModule.welcome()
     
