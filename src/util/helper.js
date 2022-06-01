@@ -1,8 +1,5 @@
-// var today = new Date();
 
-// var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 
-// console.log(date)
 
 const printDate = function (){
     const today = new Date();
@@ -44,10 +41,6 @@ module.exports.printDate = printDate
 module.exports.printMonth = printMonth
 module.exports.getBatchInfo = getBatchInfo
 module.exports.empty = empty
-
-// today.getFullYear()+'-'+(today.getMonth()+1)+'-'+
-
-
 
 // Problem 2
 // Module 2 : src/util/helper.js
