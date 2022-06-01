@@ -20,7 +20,7 @@ const printMonth = function(){
 
 
 const getBatchInfo = function() {
-    console.log('Roadon, W3D1, the topic for today is Nodejs module system')
+    console.log('Radon, W3D1, the topic for today is Nodejs module system')
 }
 
 const problem2 = function() {
