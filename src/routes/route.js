@@ -1,40 +1,79 @@
 const express = require('express');
-const myHelper = require('../util/helper')
+
 const underscore = require('underscore')
 
 const router = express.Router();
 
-router.get('/test-me', function (req, res) {
-    myHelper.printDate()
-    myHelper.getCurrentMonth()
-    myHelper.getCohortData()
-    let firstElement = underscore.first(['Sabiha','Akash','Pritesh'])
-    console.log('The first element received from underscope function is '+firstElement)
-    res.send('My first ever api!')
-});
 
-router.get('/hello', function (req, res) {
-   
-    res.send('Hello there!')
-});
 
-router.get('/candidates', function(req, res){
-    console.log('Query paramters for this request are '+JSON.stringify(req.query))
-    let gender = req.query.gender
-    let state = req.query.state
-    let district = req.query.district
-    console.log('State is '+state)
-    console.log('Gender is '+gender)
-    console.log('District is '+district)
-    let candidates = ['Akash','Suman']
-    res.send(candidates)
+router.get('/movies',function(req, res){
+    let movies = ['Rang de basanti', 'The shining' , 'Lord of the rings',  'Batman begins']
+    res.send(movies)
 })
 
-router.get('/candidates/:canidatesName', function(req, res){
-    console.log('The request objects is '+ JSON.stringify(req.params))
-    console.log('Candidates name is '+req.params.canidatesName)
-    res.send('Done')
+router.get('/movies/:indexNumber' , function(req,res){
+    let movies = ['Rang de basanti', 'The shining' , 'Lord of the rings',  'Batman begins']
+    let displayMovie
+    if(req.params.indexNumber < movies.length){
+        displayMovie = movies[req.params.indexNumber]
+    }else{
+        displayMovie = "use a valid index number"
+    }
+    
+    res.send(displayMovie)
 })
+
+router.get('/films', function(req,res){
+  const films =  [ {
+        "id": 1,
+        "name": "Shinchan"
+       }, {
+        "id": 2,
+        "name": "Doraemon"
+       }, {
+        "id": 3,
+        "name": "Tom and Jerry"
+       }, {
+        "id": 4,
+        "name": "Finding Nemo"
+       }]
+    res.send(films)      
+})
+
+router.get('/films/:filmId', function(req,res){
+    const films =  [ {
+        "id": 1,
+        "name": "The Godfather"
+       }, {
+        "id": 2,
+        "name": "Forrest Gump"
+       }, {
+        "id": 3,
+        "name": "The Truman Show"
+       }, {
+        "id": 4,
+        "name": "The Test"
+       }]
+    let film
+    if(req.params.filmId <= films.length && req.params.filmId != 0){
+        for(index = 0; index< films.length; index++){
+            if(req.params.filmId == films[index].id){
+                film = films[index].name
+                break
+            }
+        }
+    }else{
+        film = "No movie exists with this id"
+
+
+    }
+    
+
+    res.send(film)
+})
+
+
+
 
 
 module.exports = router;
