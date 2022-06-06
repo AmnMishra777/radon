@@ -5,16 +5,19 @@ const bookSchema = new mongoose.Schema( {
     authorName: String, 
     tags: [String],
     
-    isPublished: Boolean,
+    year: Number,
+    totalPages: Number,
+    
     prices: {
-        indianPrice: String,
-        europePrice: String,
+        indianPrice: Number,
+        europePrice: Number,
     },
-    sales: {type: Number, default: 10}
-}, { timestamps: true });
+    stockAvailable: Boolean
+}, { timestamps: true }
+);
 
 
-module.exports = mongoose.model('Book', bookSchema) //users
+module.exports = mongoose.model('Booksss', bookSchema) //users
 
 //Validation:
 //require:true
