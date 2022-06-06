@@ -8,33 +8,36 @@ router.get("/test-me", function (req, res) {
 })
 
 
-// let books = [{
-//     "bookName": "Rich Dad Poor Dad",
-//     "authorName": "Robert.K",
-//     "category": "Finance",
-//     "year": 1997
-// },
+// books used as examples
+    // "bookName": "Rich Dad Poor Dad",
+    // "authorName": "Robert.K",
+    // "category": "Finance",
+    // "year": 1997
 
-// {  
-//     "bookName": "Think and Grow Rich",
-//     "authorName": "Napolean Hill",
-//     "category": "Finance",
-//     "year": 1937
+
+    // "bookName": "Think and Grow Rich",
+    // "authorName": "Napolean Hill",
+    // "category": "Finance",
+    // "year": 1937
     
-// },
-
-// { 
-//     "bookName": "The Intelligent Investor",
-//     "authorName": "Benjamin Graham",
-//     "category": "Stocks and Finance",
-//     "year": 1949
-// }]
 
 
-router.post("/bookss", UserController.books) 
+ 
+    // "bookName": "The Intelligent Investor",
+    // "authorName": "Benjamin Graham",
+    // "category": "Stocks and Finance",
+    // "year": 1949
 
-router.post("/createUser", UserController.createUser  )
+    // "bookName": "Rich Dad Poor Dad",
+    // "authorName": "Robert.K",
+    // "category": "Finance",
+    // "year": 1997
 
-router.get("/getUsersData", UserController.getUsersData)
+
+
+
+router.post("/createBook", UserController.createBook )
+
+router.get("/getBookData", UserController.getBookData)
 
 module.exports = router;
