@@ -31,7 +31,7 @@ const createBook= async function (req, res) {
 
  
  const getRandomBooks= async function (req, res) {
-    let allUsers= await BookModel.find( {$or: [ { totalPages: 28} , { stockAvailable:  true }]})
+    let allUsers= await BookModel.find( {$or: [ { totalPages: { $gt: 470}} , { stockAvailable:  true }]}) 
     res.send({msg: allUsers})
  }
 
