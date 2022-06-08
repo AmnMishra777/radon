@@ -17,6 +17,9 @@ router.get("/getBooksbyChetanBhagat", BookController12.getBooksbyChetanBhagat)
 
 router.post("/authorofBook", BookController12.authorofBook)
 
+router.post("/booksCost", BookController12.booksCost)
+
+
 // router.post("/createUser", UserController.createUser  )
 
 // router.get("/getUsersData", UserController.getUsersData)
