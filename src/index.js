@@ -16,7 +16,7 @@ mongoose.connect("mongodb+srv://AmnMishra777:ZwLJNlmaLi3ga4GF@cluster0.9xjau.mon
 
 app.use (
     function (req, res, next) {
-        console.log (new Date().toISOString()+" "+ req.path + " "+ req.socket.remoteAddress);
+        console.log (new Date().toISOString()+" "+ req.originalUrl +" "+ req.socket.remoteAddress + req.path );
         next();
   }
   );
