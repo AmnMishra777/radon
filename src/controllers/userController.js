@@ -80,11 +80,23 @@ const updateUser = async function (req, res) {
   }
 
   let userData = req.body;
-  let updatedUser = await userModel.findOneAndUpdate({ _id: userId }, userData);
+  let updatedUser = await userModel.findOneAndUpdate({ _id: userId }, userData, {new:true});
   res.send({ status: updatedUser, data: updatedUser });
 };
+
+const deleteUser = async function (req,res){
+  let userId = req.params.userId;
+  let user = await userModel.findById(userId);
+  if (!user){
+    return res.send("no user exist");
+  }
+  let userData = req.body;
+  let deletedUser = await userModel.findOneAndUpdate({_id: userId}, userData, {new:true});
+  res.send({status: deletedUser, data: deletedUser});
+}
 
 module.exports.createUser = createUser;
 module.exports.getUserData = getUserData;
 module.exports.updateUser = updateUser;
 module.exports.loginUser = loginUser;
+module.exports.deleteUser = deleteUser
