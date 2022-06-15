@@ -32,12 +32,12 @@ const loginUser = async function (req, res) {
     {
       userId: user._id.toString(),
       batch: "thorium",
-      organisation: "FUnctionUp",
+      organisation: "FunctionUp",
     },
-    "functionup-thorium"
+    "functionup-radon"
   );
   res.setHeader("x-auth-token", token);
-  res.send({ status: true, data: token });
+  res.send({ status: true, token: token });
 };
 
 const getUserData = async function (req, res) {
@@ -54,7 +54,7 @@ const getUserData = async function (req, res) {
   // Input 1 is the token to be decoded
   // Input 2 is the same secret with which the token was generated
   // Check the value of the decoded token yourself
-  let decodedToken = jwt.verify(token, "functionup-thorium");
+  let decodedToken = jwt.verify(token, "functionup-radon");
   if (!decodedToken)
     return res.send({ status: false, msg: "token is invalid" });
 
@@ -80,9 +80,20 @@ const updateUser = async function (req, res) {
   }
 
   let userData = req.body;
-  let updatedUser = await userModel.findOneAndUpdate({ _id: userId }, userData);
+  let updatedUser = await userModel.findOneAndUpdate({ _id: userId }, userData, {new:true});
   res.send({ status: updatedUser, data: updatedUser });
 };
+
+const deleteUser = async function (req,res){
+  let userId = req.params.userId;
+  let user = await userModel.findById(userId);
+  if (!user){
+    return res.send("no user exist");
+  }
+  let userData = req.body;
+  let deletedUser = await userModel.findOneAndUpdate({_id: userId}, userData, {new:true});
+  res.send({status: deletedUser, data: deletedUser});
+}
 
 const postMessage = async function (req, res) {
     let message = req.body.message
@@ -91,7 +102,7 @@ const postMessage = async function (req, res) {
     // Return a different error message in both these cases
     let token = req.headers["x-auth-token"]
     if(!token) return res.send({status: false, msg: "token must be present in the request header"})
-    let decodedToken = jwt.verify(token, 'functionup-thorium')
+    let decodedToken = jwt.verify(token, 'functionup-radon')
 
     if(!decodedToken) return res.send({status: false, msg:"token is not valid"})
     
@@ -119,4 +130,5 @@ module.exports.createUser = createUser;
 module.exports.getUserData = getUserData;
 module.exports.updateUser = updateUser;
 module.exports.loginUser = loginUser;
-module.exports.postMessage = postMessage
+module.exports.postMessage = postMessage;
+module.exports.deleteUser = deleteUser;
