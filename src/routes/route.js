@@ -17,6 +17,7 @@ router.get("/users/:userId", mware.mw ,userController.getUserData)
 router.post("/users/:userId/posts", mware.mw ,userController.postMessage)
 
 router.put("/users/:userId", mware.mw, userController.updateUser)
-//router.delete('/users/:userId', userController.deleteUser)
+
+router.delete('/users/:userId',mware.mw, userController.deleteUser)
 
 module.exports = router;

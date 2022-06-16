@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 const mw = function (req, res,next) {
+  try{
     let token = req.headers["x-Auth-token"];
     if (!token) token = req.headers["x-auth-token"];
   
@@ -18,8 +19,10 @@ const mw = function (req, res,next) {
     }else{
         next()
     }
-
-};
-
+}
+catch(err){
+res.status(500).send(err.message)
+}
+}
 
 module.exports.mw =mw
