@@ -72,7 +72,7 @@ const getUserData = async function (req, res) {
   // Check the value of the decoded token yourself
   let decodedToken = jwt.verify(token, "functionup-radon");
   if (!decodedToken)
-    return res.send({ status: false, msg: "token is invalid" });
+    return res.status(403).send({ status: false, msg: "token is invalid" });
 
   let userId = req.params.userId;
   let userDetails = await userModel.findById(userId);
